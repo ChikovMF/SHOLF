@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>ChikovMF.SHOLF.Library</PackageId>
+    <PackageVersion>0.1.0.0</PackageVersion>
+    <Title>SHOLF Lib</Title>
+    <Authors>Matvey F Chikov</Authors>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+    <PackageProjectUrl>
+      https://github.com/ChikovMF/SHOLF
+    </PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>
+      Note will appear later
+    </PackageReleaseNotes>
+    <Description>
+      Description will appear later
+    </Description>
+    <Copyright>
+      Copyright © 2023 ChikovMF
+    </Copyright>
+    <PackageTags>hash stream chikovmf csharp dotnet</PackageTags>
+
+  </PropertyGroup>
+
+</Project>
