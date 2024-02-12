@@ -7,7 +7,7 @@
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>ChikovMF.SHOLF.Library</PackageId>
-    <PackageVersion>0.1.0.0</PackageVersion>
+    <PackageVersion>8.1.1</PackageVersion>
     <Title>SHOLF Lib</Title>
     <Authors>Matvey F Chikov</Authors>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
