@@ -5,14 +5,13 @@ namespace SHOLF.Library;
 
 public class Hasher : IHasher
 {
-    public string[] GetHash(Stream stream, HashingAlgorithm hashingAlgorithm , int segmentCount)
+    public async Task<ICollection<string>> GetHashAsync(Stream stream, HashAlgorithm hashAlgorithm, int segmentCount, int bufferSize)
     {
-        HashAlgorithm algorithm = GetAlgoritm(hashingAlgorithm);
-
+        HashAlgorithm algorithm = hashAlgorithm;
         long c = (long)Math.Ceiling((decimal)stream.Length / segmentCount);
 
         string[] result = new string[segmentCount];
-        byte[] buffer = new byte[4 * 1024];
+        byte[] buffer = new byte[bufferSize];
 
         for (int i = 0; i < segmentCount; i++)
         {
@@ -21,7 +20,7 @@ public class Hasher : IHasher
 
             while (bytesToHash > 0)
             {
-                var bytesRead = stream.Read(buffer, 0, (int)Math.Min(bytesToHash, buffer.Length));
+                var bytesRead = await stream.ReadAsync(buffer, 0, (int)Math.Min(bytesToHash, buffer.Length));
 
                 algorithm.TransformBlock(buffer, 0, bytesRead, null, 0);
 
@@ -33,7 +32,7 @@ public class Hasher : IHasher
 
             algorithm.TransformFinalBlock(buffer, 0, 0);
 
-            byte[] hash = algorithm.Hash;
+            byte[] hash = algorithm.Hash ?? new byte[0];
 
             result[i] = ByteToString(hash);
         }
@@ -41,7 +40,7 @@ public class Hasher : IHasher
         return result;
     }
 
-    private string ByteToString(byte[] array)
+    private string ByteToString(byte[] array, bool format = false)
     {
         StringBuilder sb = new StringBuilder();
 
@@ -49,29 +48,9 @@ public class Hasher : IHasher
         {
             sb.Append($"{array[i]:X2}");
 
-            // if ((i % 4) == 3) sb.Append(" ");
+            if ( format && (i % 4) == 3) sb.Append(" ");
         }
 
         return sb.ToString();
-    }
-
-    private HashAlgorithm GetAlgoritm(HashingAlgorithm algorithm)
-    {
-        switch (algorithm)
-        {
-            case HashingAlgorithm.SHA512:
-                return SHA512.Create();
-
-            case HashingAlgorithm.SHA256:
-                return SHA256.Create();
-
-            case HashingAlgorithm.SHA1:
-                return SHA1.Create();
-
-            case HashingAlgorithm.MD5:
-                return MD5.Create();
-
-            default: throw new ArgumentException("Unsupported hash algorithm value", nameof(algorithm));
-        }
     }
 }
