@@ -1,24 +1,28 @@
 ﻿using SHOLF.Library;
 using System.Security.Cryptography;
 
-using (var stream = new FileStream(@$"C:\l2.bin", FileMode.Open, FileAccess.Read))
+int bufferSize = 2048;
+int segmentCount = 3;
+
+using (var stream = new FileStream(@$"C:\l.bin", FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, true))
 {
     var alg = SHA256.Create();
-    var h = new Hasher();
-    
-    Console.WriteLine("File name: " + stream.Name + ". File size: " + stream.Length + " byte.");
+    IHasher h = new Hasher();
 
-    foreach(HashingAlgorithm algorithm in Enum.GetValues(typeof(HashingAlgorithm)))
+    Console.WriteLine($@"File name: {stream.Name}.
+File size: {stream.Length} byte.
+Segment count: {segmentCount}.
+Buffer size: {bufferSize} byte.
+");
+
+    var strs = await h.GetHashAsync(stream, alg, segmentCount, bufferSize);
+
+    int i = 1;
+    Console.WriteLine(alg.ToString() + ":");
+    foreach (var str in strs)
     {
-        var strs = h.GetHash(stream, algorithm, 3);
-
-        int i = 1;
-        Console.WriteLine(algorithm.ToString() + ":");
-        foreach (var str in strs)
-        {
-            Console.WriteLine(i + ") " + str);
-            i++;
-        }
-        Console.WriteLine();
+        Console.WriteLine(i + ") " + str);
+        i++;
     }
+    Console.WriteLine();
 }
