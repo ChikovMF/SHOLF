@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOLF.Library", "SHOLF.Libr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOLF.Console", "SHOLF.Console\SHOLF.Console.csproj", "{7F5FB4EC-D1B4-4F24-A243-8EFF4F45CCCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOLF.Manager", "SHOLF.Manager\SHOLF.Manager.csproj", "{58F28CB7-8A30-4514-88BB-3E4F7ED127A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7F5FB4EC-D1B4-4F24-A243-8EFF4F45CCCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F5FB4EC-D1B4-4F24-A243-8EFF4F45CCCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F5FB4EC-D1B4-4F24-A243-8EFF4F45CCCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F28CB7-8A30-4514-88BB-3E4F7ED127A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F28CB7-8A30-4514-88BB-3E4F7ED127A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F28CB7-8A30-4514-88BB-3E4F7ED127A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F28CB7-8A30-4514-88BB-3E4F7ED127A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
